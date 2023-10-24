@@ -4,6 +4,8 @@ import random
 
 import reflex as rx
 
+from web_periodico_reflex.components.navbar import navbar
+
 docs_url = "https://reflex.dev/docs/getting-started/introduction"
 filename = f"{config.app_name}/{config.app_name}.py"
 
@@ -20,29 +22,25 @@ class ecuacion(rx.State):
     description='A beautiful app built with Reflex',
     image='favicon.ico',
 )
-def navbar():
-    return rx.box(
-        rx.vstack(
-            rx.hstack(
-                rx.image(src="favicon.ico"),
-                rx.heading("Eche que paso!"),
-            ),
-            rx.spacer(),
-            rx.menu(
-                rx.menu_button("Menu"),
-            ),
-            rx.heading(
-                f"The number is {ecuacion.resultado}"
-            ),
-            rx.button("Update", on_click=ecuacion.suma),
-            rx.spacer(),
-            position="fixed",
-            width="100%",
-            top="0px",
-            z_index="5",
-            )
-        )
+def index() -> rx.component:
+    return rx.container(
+        navbar(),
+        rx.divider(),
+        margin = 0,
+        padding = 0,
+        max_width = '100%',
+    )
 
+@rx.page()
+def about() -> rx.component:
+    return rx.container(
+        navbar(),
+        rx.divider(),
+        margin = 0,
+        padding = 0,
+        max_width = '100%',
+    )
+    
 
 # Add state and page to the app.
 app = rx.App()

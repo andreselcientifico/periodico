@@ -3,7 +3,8 @@ import { useRouter } from "next/router"
 import { Event, getAllLocalStorageItems, getRefValue, getRefValues, isTrue, preventDefault, refs, spreadArraysOrObjects, uploadFiles, useEventLoop } from "/utils/state"
 import { EventLoopContext, initialEvents, StateContext } from "/utils/context.js"
 import "focus-visible/dist/focus-visible"
-import { Box, Button, Heading, HStack, Image, Menu, MenuButton, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, Spacer, Text, useColorMode, VStack } from "@chakra-ui/react"
+import { Box, Center, Container, Divider, Flex, Image, Link, Menu, MenuButton, MenuItem, MenuList, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, Text, useColorMode } from "@chakra-ui/react"
+import NextLink from "next/link"
 import NextHead from "next/head"
 
 
@@ -61,29 +62,43 @@ export default function Component() {
   <Fragment/>
 )}
 </Fragment>
-  <Box>
-  <VStack sx={{"position": "fixed", "width": "100%", "top": "0px", "zIndex": "5"}}>
-  <HStack>
-  <Image src={`favicon.ico`}/>
-  <Heading>
-  {`Eche que paso!`}
-</Heading>
-</HStack>
-  <Spacer/>
+  <Container sx={{"margin": 0, "padding": 0, "maxWidth": "100%"}}>
+  <Flex sx={{"justifyContent": "space-between", "width": "100%", "padding": "1rem", "backgroundColor": "rgb(0,0,0)", "color": "rgb(255,255,255)"}}>
+  <Box sx={{"display": "grid"}}>
+  <Link as={NextLink} href={`/`} sx={{"justifyContent": "space-between", "display": "flex", "alignItems": "center"}}>
+  <Image src={`/favicon.ico`} sx={{"width": "15px"}}/>
+  <Text>
+  {`Eche Que Paso!`}
+</Text>
+</Link>
+</Box>
+  <Center>
   <Menu>
   <MenuButton>
-  {`Menu`}
+  {`MENU`}
 </MenuButton>
+  <MenuList sx={{"color": "rgb(0,0,0)"}}>
+  <MenuItem>
+  <Link as={NextLink} href={`/`}>
+  {`Home`}
+</Link>
+</MenuItem>
+  <MenuItem>
+  <Link as={NextLink} href={`/about`}>
+  {`About`}
+</Link>
+</MenuItem>
+  <MenuItem>
+  <Link as={NextLink} href={`/contact`}>
+  {`Posts`}
+</Link>
+</MenuItem>
+</MenuList>
 </Menu>
-  <Heading>
-  {`The number is ${ecuacion.resultado}`}
-</Heading>
-  <Button onClick={(_e) => addEvents([Event("ecuacion.suma", {})], (_e))}>
-  {`Update`}
-</Button>
-  <Spacer/>
-</VStack>
-</Box>
+</Center>
+</Flex>
+  <Divider/>
+</Container>
   <NextHead>
   <title>
   {`My Beautiful App`}
